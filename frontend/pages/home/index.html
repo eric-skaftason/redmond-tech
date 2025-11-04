@@ -3,16 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
 </head>
 <style>
-    .title-text {
-        font-size: 100px;
-        text-align: center;
-        font-family: 'Courier New', Courier, monospace;
-    }
+    @import url('./index.css');
 </style>
 <body>
     <h1 class="title-text">Father John Redmond Tech Team</h1>
+    <br>
+    <img src="/Img/Tech Logo.png"
+         alt="Tech Team Logo" 
+         style="float: right; margin-left: 20px; max-width: 650px; max-height: 650px;">
+    <br>
+    <h2 style="font-size: 70px;
+               font-family: 'Courier New', Courier, monospace;
+               margin-left: 425px;">About us</h2>
+    <p class="Ltext">
+        The Father John Redmond Tech Team is a student-run team that sets up and runs audio, visual, and computer systems for school events.
+        We have run events such as, Open House, the annual Christmas Concert, Kaleidoscope, and many more.</p>
+
+<div class="card-container">
+    <div class="card" onclick="goToPage( '../Audio suite/Index.html')">
+      <h3 class="Ctext">Audio Suite</h3>
+      <p class="Ctext">Play around with audio</p>
+    </div>
+
+    <div class="card" onclick="goToPage('../file sharing/Index.html')">
+      <h3 class="Ctext">File Sharing</h3>
+      <p class="Ctext">Share and store your file</p>
+    </div>
+</div>  
+<script src="index.js"></script>
 </body>
 </html>
