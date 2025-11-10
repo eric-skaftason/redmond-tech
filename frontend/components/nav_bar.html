@@ -15,7 +15,6 @@
         background-color: rgba(255, 255, 255, 0.5);
         backdrop-filter: blur(10px);
         z-index: 1000;
-        background-color: rgba(255, 255, 255, 0.4);
         backdrop-filter: blur(5px);
         
 
@@ -26,12 +25,6 @@
         border-bottom: 1px solid black;
     }
 
-    h1 {
-        font-family: 'Courier New', Courier, monospace;
-
-        font-size: 40px;
-    }
-
     .row {
         display: flex;
         justify-content: center;
@@ -40,9 +33,41 @@
         width: 100%;
     }
 
+    /* Row 1 */
+
     #main {
         flex: 2;
     }
+
+    #title_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+    }
+
+    #title {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 40px;
+
+        cursor: pointer;
+    }
+
+    #title:hover {
+        text-decoration: underline;
+    }
+
+    #logo {
+        height: 100px;
+        width: auto;
+        aspect-ratio: 1 / 1;
+
+        cursor: pointer;
+        
+        transition: transform 0.2s;
+    }
+
+    /* Row 2 */
 
     #links {
         flex: 1;
@@ -76,7 +101,8 @@
 <div class="placeholder"></div>
 <div class="nav_bar">
     <div class="row" id="main">
-        <h1>Redmond Tech Team</h1>
+        <slot id="title_container"><h1 id="title">Redmond Tech Team</h1></slot>
+        <img id="logo" src="/assets/tech_logo_hd.png" alt="">
     </div>
     <nav class="row" id="links">
         <a class="dropdown" href="">About</a>

@@ -25,6 +25,14 @@ class NavBar extends HTMLElement {
         const html = await response.text(); // use text method for HTML
 
         this.shadowRoot.innerHTML = html;
+
+
+        // Click on main bar to return to home
+        this.shadowRoot.addEventListener('click', (event) => {
+            const target = event.target;
+
+            if (target.id === 'title' || target.id === 'logo') document.location = '/';
+        });
     }
 
     // when element is removed from DOM
