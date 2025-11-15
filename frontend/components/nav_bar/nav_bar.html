@@ -1,0 +1,123 @@
+<style>
+    .placeholder {
+        display: block;
+        width: 100%;
+        height: 150px;
+    }
+
+    .nav_bar {
+        display: flex;
+        flex-direction: column;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        backdrop-filter: blur(5px);
+        
+
+        width: 100%;
+        height: 150px;
+
+        border-bottom: 1px solid black;
+    }
+
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        width: 100%;
+    }
+
+    /* Row 1 */
+
+    #main {
+        flex: 2;
+    }
+
+    #title_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+    }
+
+    #title {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 40px;
+
+        cursor: pointer;
+    }
+
+    #title:hover {
+        text-decoration: underline;
+    }
+
+    #logo {
+        height: 100px;
+        width: auto;
+        aspect-ratio: 1 / 1;
+
+        cursor: pointer;
+        
+        transition: transform 0.2s;
+    }
+
+    /* Row 2 */
+
+    #links {
+        flex: 1;
+        justify-content: space-between;
+
+        border-top: 1px solid #00469c;
+    }
+
+    #links * {
+        display: flex;
+
+        height: 100%;
+
+        justify-content: center;
+        align-items: center;
+    }
+
+    a:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+        border-left: 1px solid #00469c;
+        border-right: 1px solid #00469c;
+    }
+
+    .dropdown {
+        flex: 2;
+        outline: none;
+        border: none;
+    }
+
+    .quick_link {
+        flex: 1;
+    }
+
+</style>
+<div class="placeholder"></div>
+<div class="nav_bar">
+    <div class="row" id="main">
+        <slot id="title_container"><h1 id="title">Redmond Tech Team</h1></slot>
+        <img id="logo" src="/assets/tech_logo_hd.png" alt="">
+    </div>
+    <nav class="row" id="links">
+        <dropdown-menu desc="Tools" openFrom="bottom" class="dropdown">
+            <dropdown-element link="/"><p>hello world</p></dropdown-element>
+            <dropdown-element link="/"><p>hello world</p></dropdown-element>
+            <dropdown-menu desc="Tools" openFrom="right" class="dropdown">
+                    <dropdown-element link="/"><p>hello world</p></dropdown-element>
+                    <dropdown-element link="/"><p>hello world</p></dropdown-element>
+                </dropdown-menu>
+        </dropdown-menu>
+        <a class="quick_link" href="">About</a>
+        <a class="quick_link" href="">About</a>
+        <a class="quick_link" href="">About</a>
+    </nav>
+</div>
