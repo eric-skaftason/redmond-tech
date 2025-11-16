@@ -1,7 +1,7 @@
-require('dotenv').config( { path: 'backend/.env' } ); // reads .env file located within
+require('dotenv').config( { path: '.env' } );
 const app = require('./app.js');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.SERVER_PORT || 3000;
 app.listen(PORT, () => {
     console.log(
         `-------- Redmond Tech Team Website Server --------\n` + 
