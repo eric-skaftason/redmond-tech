@@ -23,6 +23,13 @@ class AccountsModel {
         
         const [rows] = await db.query(sql, [username, password]);
 
+        return rows.length > 0;
+    }
+
+    static async isValidSessionToken(session_token) {
+        const sql = `SELECT * FROM ACCOUNTS WHERE session_token = ?`;
+
+        const [rows] = await db.query(sql, [session_token]);
 
         return rows.length > 0;
     }
