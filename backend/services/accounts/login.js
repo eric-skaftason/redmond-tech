@@ -6,7 +6,7 @@ const { accounts: { credential_specs: { session_token_duration } } } = require('
 module.exports = async (username, password) => {
 
     // Validate username & password
-    if (!AccountsModel.isValidUsernameAndPassword(username, password)) {
+    if (!await AccountsModel.isValidUsernameAndPassword(username, password)) {
         const err = new Error("Invalid username or password");
         err.status = 401;
 
