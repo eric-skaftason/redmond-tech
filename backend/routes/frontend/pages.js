@@ -12,10 +12,10 @@ router.get('/', (req, res) => {
 
 // LOG IN
 router.get('/login', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../../../frontend/pages/public/login/login.html'))
+    res.sendFile(path.resolve(__dirname, '../../../frontend/pages/public/login/login.html'));
 });
 router.get('/sign_up', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../../../frontend/pages/public/sign_up/sign_up.html'))
+    res.sendFile(path.resolve(__dirname, '../../../frontend/pages/public/sign_up/sign_up.html'));
 });
 
 // All routes after this require an account
@@ -23,10 +23,10 @@ router.use(auth(0)); // must be suspended or higher
 
 // Account folder
 router.get('/dashboard', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../../../frontend/pages/account/dashboard/dashboard.html'))
+    res.sendFile(path.resolve(__dirname, '../../../frontend/pages/account/dashboard/dashboard.html'));
 });
 router.get('/logout', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../../../frontend/pages/account/logout/logout.html'))
+    res.sendFile(path.resolve(__dirname, '../../../frontend/pages/account/logout/logout.html'));
 });
 
 
