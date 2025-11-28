@@ -3,15 +3,7 @@ function togglePassword() {
     pwd.type = (pwd.type === 'password') ? 'text' : 'password';
 }
 
-function login2() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const errorMsg = document.getElementById('errorMsg');
 
-
-
-    
-}
 
 async function logincheck(){
     // Get username and password
@@ -29,5 +21,12 @@ async function logincheck(){
     });
     //wait for response
     const data = await response.json();
+    if (response.ok){
+        document.location='/';
+
+    }else{
+        const errorMsg = document.getElementById('errorMsg');
+        errorMsg.innerText = data.message;
+    }
     console.log(data);
 }
