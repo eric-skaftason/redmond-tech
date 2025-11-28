@@ -18,7 +18,7 @@ async function logincheck(){
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     // Semds Login to backend
-    const response = await fetch('/api/login', {
+    const response = await fetch('/api/accounts/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
