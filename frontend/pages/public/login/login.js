@@ -1,3 +1,4 @@
+
 function togglePassword() {
     const pwd = document.getElementById('password');
     pwd.type = (pwd.type === 'password') ? 'text' : 'password';
@@ -8,6 +9,15 @@ document.addEventListener("keydown",function(event){
     }
 });
 
+function displayError(message) {
+    const errMessageEle = document.getElementById('errorMsg');
+    errMessageEle.innerText = message;
+
+    setTimeout(() => {
+        errMessageEle.innerText = '';
+    }, 2000);
+
+}
 
 async function logincheck(){
     // Get username and password
@@ -29,8 +39,7 @@ async function logincheck(){
         document.location='/';
 
     }else{
-        const errorMsg = document.getElementById('errorMsg');
-        errorMsg.innerText = data.message;
+        displayError(data.message);
     }
     console.log(data);
 }

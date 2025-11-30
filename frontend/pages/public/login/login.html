@@ -9,16 +9,18 @@
     <link rel="stylesheet" href="/public/login/login.css">
 </head>
 <body>
-<page-nav></page-nav>
+    <page-nav></page-nav>
 
-    <div class="login-container">
-        <h1>Login</h1>
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <label><input type="checkbox" id="showPassword" onclick="togglePassword()"> Show Password</label>
-        <button onclick="logincheck()">Login</button>
-        <p class="error" id="errorMsg"></p>
-    </div>
+    <main>
+        <div class="login-container">
+            <h1>Login</h1>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <label><input type="checkbox" id="showPassword" onclick="togglePassword()"> Show Password</label>
+            <button onclick="logincheck()">Login</button>
+            <p class="error" id="errorMsg"></p>
+        </div>
+    </main>
 
     <script src="/public/login/login.js"></script>
 
