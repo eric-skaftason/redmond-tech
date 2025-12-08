@@ -6,6 +6,7 @@ module.exports = () => {
 
     return {
         package: packageJSON.name,
-        version: packageJSON.version
+        version: packageJSON.version,
+        "dev-phase": packageJSON["dev-phase"],
     };
 }

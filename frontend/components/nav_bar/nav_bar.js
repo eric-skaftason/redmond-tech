@@ -31,7 +31,7 @@ class NavBar extends HTMLElement {
         const subtitle_response = await fetch('/api/app_info');
         const subtitle_json = await subtitle_response.json();
         const subtitle = subtitle_json.data;
-        this.shadowRoot.getElementById("subtitle").innerText = `${subtitle.package} - v${subtitle.version}`;
+        this.shadowRoot.getElementById("subtitle").innerText = `${subtitle.package} - ${subtitle["dev-phase"]} v${subtitle.version}`;
 
         // Click on main bar to return to home
         this.shadowRoot.addEventListener('click', (event) => {
