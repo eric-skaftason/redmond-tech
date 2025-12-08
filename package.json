@@ -1,6 +1,6 @@
 {
   "name": "redmond-tech",
-  "version": "1.0.0",
+  "version": "0.1.0-dev",
   "description": "Father John Redmond Tech Team Website",
   "main": "backend/index.js",
   "scripts": {
