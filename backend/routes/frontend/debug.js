@@ -29,6 +29,8 @@ router.get('/fs', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../../../frontend/pages/debug/fs/fs.html'));
 });
 
+router.use('/', express.static(path.join(__dirname, '../../../frontend/pages/debug')));
+
 module.exports = router;
 
 // test
