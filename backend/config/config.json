@@ -25,11 +25,10 @@
     },
     
     "file_sharing": {
-        "global_max_storage": 0,
-        "max_storage_per_user": 0,
-        "max_vdisks_per_user": 0,
+        "global_max_storage": 65536,
+        "max_storage_per_user": 4096,
 
-        "max_uploads_per_req": 64,
-        "max_upload_size": 64
+        "max_uploads_per_req": 2,
+        "max_upload_size": 1024
     }
 }

@@ -1,4 +1,4 @@
-const upload = require('../../services/file_sharing/multer.js');
+const upload = require('../../config/multer.js');
 
 /*
 app.post('/upload', upload.single('file-upload'), handler);

@@ -4,8 +4,8 @@ const router = express.Router();
 const accounts = require('./accounts.js');
 router.use('/accounts', accounts);
 
-const file_sharing = require('./file_sharing.js');
-router.use('/file_sharing', file_sharing);
+const file_sharing = require('./red_fs.js');
+router.use('/red_fs', file_sharing);
 
 const getAppInfo = require('../../utils/misc/app_info.js');
 router.get('/app_info', (req, res) => {
