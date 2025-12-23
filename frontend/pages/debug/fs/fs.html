@@ -13,7 +13,7 @@
     <page-nav></page-nav>
     <main>
 
-        <form class="upload" action="/api/file_sharing/upload" method="post" enctype="multipart/form-data">
+        <form id="uploadForm" class="upload" enctype="multipart/form-data">
             <input type="file" id="fileToUpload" name="upload" hidden>
 
             <button type="button" id="chooseBtn">Choose File</button>
@@ -23,26 +23,19 @@
             <button type="submit" id="uploadBtn">Upload</button>
         </form> 
 
-        <table>
-        <tr>
-            <th>File Name</th>
-            <th>Date created</th>
-            <th>Date modified </th>
-            <th>Size</th>
-        </tr>
-        <tr>
-            <td>file 1</td>
-            <td>-date-</td>
-            <td>-date-</td>
-            <td>500KB</td>
-        </tr>
-        <tr>
-            <td>file 2</td>
-            <td>-date-</td>
-            <td>-date-</td>
-            <td>1.2MB</td>
-        </tr>
-        </table>
+    <table id="fileTable">
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>Date created</th>
+                <th>Date modified </th>
+                <th>Size</th>
+            </tr>
+        </thead>
+            <tbody id="fileTableBody">
+                <!-- JS will insert rows here -->
+            </tbody>
+    </table>
 
 
         
