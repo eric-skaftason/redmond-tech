@@ -2,6 +2,8 @@ const AccountsModel = require('../../models/accounts.js');
 const { validateUsername, validatePassword } = require('../../utils/accounts/validate_credential_specs.js');
 const verifyAccountCreationKey = require('../../utils/accounts/verify_account_creation_key.js');
 
+const fs = require('fs');
+
 module.exports = async (username, password, accountCreationKey) => {
     // Validate username & password
     if (!validateUsername(username) || !validatePassword(password) || !verifyAccountCreationKey(accountCreationKey)) {
@@ -10,12 +12,27 @@ module.exports = async (username, password, accountCreationKey) => {
         throw err;
     }
 
-    if (await AccountsModel.getAccountIDByUsername(username)) {
+    if (await AccountsModel.getAccountIdByUsername(username)) {
         const err = new Error("Account already exists");
         err.status = 409;
         throw err;
     }
 
     await AccountsModel.createAccount(username, password);
+
+    const accountId = await AccountsModel.getAccountIdByUsername(username);
+
+    const dir = path.join(
+        process.env.STORAGE_LOCATION,
+        String(accountId)
+    );
+
+    try {
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir);
+        }
+    } catch (err) {
+        throw err;
+    }
 
 }

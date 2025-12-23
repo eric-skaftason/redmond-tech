@@ -11,17 +11,17 @@ class AccountsModel {
     }
 
     static async login(username, session_token, created_at, expires_at) {
-        const sql = `INSERT INTO sessions (user_id, token, created_at, expires_at) VALUES (?, ?, ?, ?)`;
+        const sql = `INSERT INTO sessions (account_id, token, created_at, expires_at) VALUES (?, ?, ?, ?)`;
 
-        const user_id = await this.getAccountIDByUsername(username);
+        const account_id = await this.getAccountIdByUsername(username);
 
-        await db.query(sql, [user_id, session_token, created_at, expires_at]);
+        await db.query(sql, [account_id, session_token, created_at, expires_at]);
     }
 
-    static async logout(id) {
-        const sql = `DELETE FROM sessions WHERE user_id = ?`;
+    static async logout(account_id) {
+        const sql = `DELETE FROM sessions WHERE account_id = ?`;
 
-        await db.query(sql, [id]);
+        await db.query(sql, [account_id]);
     }
 
     static async isValidUsernameAndPassword(username, password) {
@@ -40,10 +40,10 @@ class AccountsModel {
         return rows?.[0] || null;
     }
 
-    static async getPermissionLevelByID(id) {
+    static async getPermissionLevelByAccountId(account_id) {
         const sql = `SELECT permission_level FROM accounts WHERE id = ?`;
 
-        const [rows] = await db.query(sql, [id]);
+        const [rows] = await db.query(sql, [account_id]);
 
         return rows?.[0] || null;
     }
@@ -52,9 +52,9 @@ class AccountsModel {
         const session = await this.getSession(session_token);
         if (!session) return;
 
-        const user_id = session.user_id;
+        const account_id = session.account_id;
 
-        return await this.getPermissionLevelByID(user_id);
+        return await this.getPermissionLevelByAccountId(account_id);
 
     }
 
@@ -63,7 +63,7 @@ class AccountsModel {
         return !!session;
     }
 
-    static async getAccountIDByUsername(username) {
+    static async getAccountIdByUsername(username) {
         const sql = `SELECT id FROM accounts WHERE (username) = (?)`;
 
         /*
