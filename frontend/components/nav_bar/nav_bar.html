@@ -82,9 +82,25 @@
 
     /* Row 2 */
 
-    #links {
+    ::slotted(*) {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+
+        justify-content: center;
+        align-items: center;
+
         flex: 1;
         justify-content: space-between;
+    }
+
+    .slot_wrapper {
+        flex: 1;
+        justify-content: space-between;
+
+        display: flex;
+        flex-direction: row;
+        width: 100%;
 
         border-top: 1px solid #00469c;
     }
@@ -103,8 +119,18 @@
         border-left: 1px solid #00469c;
         border-right: 1px solid #00469c;
     }
+    ::slotted(a:hover) {
+        background-color: rgba(255, 255, 255, 0.4);
+        border-left: 1px solid #00469c;
+        border-right: 1px solid #00469c;
+    }
 
     .dropdown {
+        flex: 2;
+        outline: none;
+        border: none;
+    }
+    ::slotted(.dropdown) {
         flex: 2;
         outline: none;
         border: none;
@@ -112,6 +138,12 @@
 
     .quick_link {
         flex: 1;
+    }
+    ::slotted(.quick_link) {
+        flex: 1;
+
+        justify-content: center;
+        align-items: center;
     }
 
 </style>
@@ -124,34 +156,38 @@
         </div>
         <img id="logo" src="/assets/tech_logo_hd.png" alt="">
     </div>
-    <nav class="row" id="links">
-        <dropdown-menu desc="Programs" openFrom="bottom" class="dropdown">
+    <div class="slot_wrapper">
+        <slot>
+            <nav class="row" id="links">
+                <dropdown-menu desc="Programs" openFrom="bottom" class="dropdown">
 
-            <dropdown-menu desc="RedFS" openFrom="right" class="dropdown">
-                <dropdown-element link="/rfs"><p>Dashboard</p></dropdown-element>
-            </dropdown-menu>
+                    <dropdown-menu desc="RedFS" openFrom="right" class="dropdown">
+                        <dropdown-element link="/rfs"><p>Dashboard</p></dropdown-element>
+                    </dropdown-menu>
 
-            <dropdown-menu desc="Fun" openFrom="right" class="dropdown">
+                    <dropdown-menu desc="Fun" openFrom="right" class="dropdown">
 
-                <dropdown-element link="/fun"><p>Master Page</p></dropdown-element>
+                        <dropdown-element link="/fun"><p>Master Page</p></dropdown-element>
 
-                <dropdown-menu desc="Python" openFrom="right" class="dropdown">
-                    <dropdown-element link="/"><p>Chess</p></dropdown-element>
-                    <dropdown-element link="/"><p>Snake</p></dropdown-element>
-                    <dropdown-element link="/"><p>Turtle</p></dropdown-element>
+                        <dropdown-menu desc="Python" openFrom="right" class="dropdown">
+                            <dropdown-element link="/"><p>Chess</p></dropdown-element>
+                            <dropdown-element link="/"><p>Snake</p></dropdown-element>
+                            <dropdown-element link="/"><p>Turtle</p></dropdown-element>
+                        </dropdown-menu>
+
+                    </dropdown-menu>
+
+                    <dropdown-element link="/info"><p>Info</p></dropdown-element>
+                    
                 </dropdown-menu>
-
-            </dropdown-menu>
-
-            <dropdown-element link="/info"><p>Info</p></dropdown-element>
-            
-        </dropdown-menu>
-        <a class="quick_link" href="/rfs">RedFS</a>
-        <a class="quick_link" href="">Fun</a>
-        <a class="quick_link" href="">Info</a>
-        <dropdown-menu desc="Authentication" openFrom="bottom" class="dropdown">
-            <dropdown-element link="/login"><p>Login</p></dropdown-element>
-            <dropdown-element link="/sign_up"><p>Create Account</p></dropdown-element>
-        </dropdown-menu>
-    </nav>
+                <a class="quick_link" href="/rfs">RedFS</a>
+                <a class="quick_link" href="">Fun</a>
+                <a class="quick_link" href="">Info</a>
+                <dropdown-menu desc="Authentication" openFrom="bottom" class="dropdown">
+                    <dropdown-element link="/login"><p>Login</p></dropdown-element>
+                    <dropdown-element link="/sign_up"><p>Create Account</p></dropdown-element>
+                </dropdown-menu>
+            </nav>
+        </slot>
+    </div>
 </div>
