@@ -2,7 +2,7 @@ async function uploadFile(file) {
     const formData = new FormData();
     formData.append("upload", file);
 
-    const res = await fetch("/api/red_fs/upload", {
+    const res = await fetch("/api/rfs/upload", {
         method: "POST",
         body: formData
     });
@@ -12,33 +12,38 @@ async function uploadFile(file) {
     // await loadFiles(); // refresh table after upload
 }
 
-async function loadFiles() {
-    const res = await fetch("/api/file_sharing/list"); // Adjust endpoint as needed
-    const files = await res.json();
+async function loadResourcesInFolder(folder_id = null) {
+
+    console.log('loading resources...');
+
+    // Send request
+    const res = await fetch(`/api/rfs?folder_id=${folder_id}`);
+    const res_data = await res.json();
+
+    const folders = res_data.data.root_folders
 
     const tbody = document.getElementById("fileTableBody");
     tbody.innerHTML = ""; // clear existing rows
 
-    files.forEach(file => {
+    folders.forEach(folder => {
         const tr = document.createElement("tr");
 
         tr.innerHTML = `
-            <td>${file.name}</td>
-            <td>${file.created}</td>
-            <td>${file.modified}</td>
-            <td>${file.size}</td>
+            <td>${folder.folder_name}</td>
+            <td>${folder.created_at}</td>
+            <td>${folder.owner_id}</td>
+            <td>${folder.permission_level}</td>
+            <td></td>
         `;
+
+        tr.addEventListener('click', () => {
+            loadResourcesInFolder(folder.folder_id);
+        });
 
         tbody.appendChild(tr);
     });
 }
-//loadFiles();
-
-//ask chat gpt to suggest changes to backend/routes/api/red_fs.js to match the frontend/pages/debug/fs/fs.js upload endpoint :) json
-
-////////////////////////
-
-// Init
+loadResourcesInFolder();
 
 // File upload
 const fileInput = document.getElementById("fileToUpload");
