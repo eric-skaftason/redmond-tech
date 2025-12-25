@@ -16,13 +16,60 @@ class RedFS {
         
     }
 
-    static async getFolderOwnerId(folder_id) {
+    static async getOwnerIdByFolderId(folder_id) {
         const sql = `SELECT owner_id FROM folders WHERE folder_id = ?`;
 
         const [rows] = await db.query(sql, [folder_id]);
         const owner_id = rows[0]?.owner_id;
 
         return owner_id;
+    }
+
+    // Returns all root folder IDs that a given account id has access (level 1 or greater) to
+    static async getAccessibleRootFolderIds(account_id) {
+        const sql = `SELECT folder_id FROM folder_permissions WHERE account_id = ? AND permission_level >= ?`;
+
+        const [rows] = await db.query(sql, [account_id, 1]);
+        
+        const flatArray = (() => {
+            let array = [];
+            for (const row of rows) {
+                array.push(row.folder_id);
+            }
+            return array;
+        })();
+
+        return flatArray;
+    }
+
+    static async getAccessibleRootFolders(account_id) {
+        const sql = `
+            SELECT f.folder_id, f.folder_name, f.created_at, f.owner_id, fp.permission_level
+            FROM folders f
+            JOIN folder_permissions fp ON fp.folder_id = f.folder_id
+            WHERE fp.account_id = ?
+            AND fp.permission_level >= 1
+            AND f.parent_folder_id IS NULL
+        `;
+
+        /*
+            SELECT f.* -- select everything from folders table
+            FROM folders f -- sets f as folders alias
+            JOIN folder_permissions fp ON fp.folder_id = f.folder_id -- joins folder_permissions (also sets fp alias)
+            -- Match a row in folder_permissions to a row in folders when both have the same folder_id
+            -- there could be multiple fp.account_id entries per folder, so filtering is done later
+            WHERE fp.account_id = ? -- filters for rows with the account id x
+            AND fp.permission_level >= 1 -- and permission level equal to or greater than 1
+            AND f.parent_folder_id IS NULL -- and is a root folder
+        */
+
+        const [rows] = await db.query(sql, [account_id]);
+        return rows;
+    }
+
+    // Returns all contents of a folder (will not get contents of sub-folders)
+    getFolder() {
+
     }
 
     static async uploadFile(metadata) {

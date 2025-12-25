@@ -5,9 +5,10 @@ const createFolder = require('../../services/red_fs/create_folder.js');
 module.exports = async (req, res) => {
     try {
         const { folder_name, parent_folder_id = null } = req.body;
-        const { account_id } = req.params;
+        
+        const session_token = req.cookies.session_token;
 
-        await createFolder(account_id, folder_name, parent_folder_id);
+        await createFolder(session_token, folder_name, parent_folder_id);
 
         res.status(201).json({ message: "Folder created!" });
     } catch (error) {
