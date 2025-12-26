@@ -46,8 +46,8 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/rfs', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../../../frontend/pages/red_fs/red_fs.html'));
+    res.sendFile(path.resolve(__dirname, '../../../frontend/pages/rfs/rfs.html'));
 });
-router.use('/rfs', express.static(path.join(__dirname, '../../../frontend/pages/red_fs')));
+router.use('/rfs', express.static(path.join(__dirname, '../../../frontend/pages/rfs')));
 
 module.exports = router;

@@ -1,0 +1,64 @@
+/* Page styling */
+
+h1 {
+    margin: 5px;
+}
+
+.rfs_path {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.rfs_path_label {
+    margin: 0;
+    margin-right: 10px;
+    padding: 0;
+}
+
+.rfs_path_element {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.rfs_path_element:hover {
+    text-decoration: underline;
+}
+
+/* Styling for the data table */
+
+table {
+	font-family: 'Courier New', Courier, monospace;
+	border-collapse: collapse;
+	color: #ffffff;
+	width: 100%;
+    margin: 10px;
+}
+
+td, th {
+	border: 1px solid #2b2b2b;
+	text-align: left;
+	padding: 8px;
+}
+
+th {
+	background-color: #00152e;
+    border-color: #00469c;
+}
+
+
+td .type {
+    margin-right: 8px;
+}
+td .file_name:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+tr:nth-child(even) {
+	background-color: #000000;
+}
+tr:nth-child(odd) {
+	background-color: #272727;
+}

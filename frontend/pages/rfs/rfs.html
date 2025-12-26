@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/components/universal_styling.css">
+    <link rel="stylesheet" href="/rfs/rfs.css">
+    <script src="/components/nav_bar/nav_bar.js"></script>
+</head>
+<body>
+    <page-nav>
+        <dropdown-menu desc="Upload" openFrom="bottom" class="dropdown">
+            <dropdown-element link="" id="upload_file">
+                <p>File</p>
+                <input type="file" id="upload" name="upload" hidden>
+            </dropdown-element>
+            <dropdown-element link="" id="upload_files"><p>Multiple files</p></dropdown-element>
+            <dropdown-element link="" id="upload_folder"><p>Entire folder</p></dropdown-element>
+        </dropdown-menu>
+        <a class="quick_link" href="" id="new_folder">New Folder</a>
+        <a class="quick_link" href="">TBD</a>
+        <a class="quick_link" href="">TBD</a>
+    </page-nav>
+
+    <main>
+        <div class="rfs_path">
+            <p style="margin-right: 10px;" class="rfs_path_label">Current folder:</p>
+            <span class="rfs_path_element">/</span>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th width="500">Resource Name</th>
+                    <th width="200">Date created</th>
+                    <th width="100">Owner</th>
+                    <th width="100">Access Level</th>
+                    <th width="100">Size</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <!-- JS will insert rows here -->
+
+                
+                <!-- <tr>
+                    <td><span class="type">📁</span><span class="file_name">report.pdf</span></td>
+                    <td>r</td>
+                    <td>r</td>
+                    <td>r</td>
+                    <td>r</td>
+                </tr>
+                <tr>
+                    <td>r</td>
+                    <td>r</td>
+                    <td>r</td>
+                    <td>r</td>
+                    <td>r</td>
+                </tr> -->
+            </tbody>
+        </table>
+
+    </main>
+</body>
+
+<script src="/rfs/rfs.js"></script>
+
+</html>
