@@ -95,6 +95,7 @@ tr:nth-child(odd) {
 /* Go to parent directory text */
 #goToParentDirectory {
     cursor: pointer;
+    margin-right: 10px;
 }
 #goToParentDirectory:hover {
     text-decoration: underline;

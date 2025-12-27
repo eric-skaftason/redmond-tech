@@ -193,6 +193,7 @@ document.querySelector('#new_folder').addEventListener('click', async (event) =>
     event.preventDefault(); // prevent page reload
 
     const folder_name = prompt('Folder name: ');
+    if (!folder_name) return;
 
     const reqBody = (() => {
         if (folder_path.length === 1) {
