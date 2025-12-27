@@ -101,9 +101,9 @@ class RedFS {
     static async getRootFolderIdByFolderId(folder_id) {
         const sql = `SELECT parent_folder_id, owner_id FROM folders WHERE folder_id = ?`;
         const [rows] = await db.query(sql, [folder_id]);
-        const parent_folder_id = rows[0].parent_folder_id;
+        const parent_folder_id = rows[0]?.parent_folder_id;
 
-        if (parent_folder_id === null) return rows[0].owner_id;
+        if (parent_folder_id === null) return rows[0]?.owner_id;
 
         // if not root folder, call method again
         return await this.getRootFolderIdByFolderId(parent_folder_id);
@@ -113,7 +113,7 @@ class RedFS {
         const sql = `SELECT folder_id FROM files WHERE file_id = ?`;
 
         const [rows] = await db.query(sql, [file_id]);
-        const folder_id = rows[0].folder_id;
+        const folder_id = rows[0]?.folder_id;
 
         const root_folder_owner = await this.getRootFolderIdByFolderId(folder_id);
 
@@ -123,9 +123,9 @@ class RedFS {
     static async getRootFolderOwnerIdByFolderId(folder_id) {
         const sql = `SELECT parent_folder_id, owner_id FROM folders WHERE folder_id = ?`;
         const [rows] = await db.query(sql, [folder_id]);
-        const parent_folder_id = rows[0].parent_folder_id;
+        const parent_folder_id = rows[0]?.parent_folder_id;
 
-        if (parent_folder_id === null) return rows[0].owner_id;
+        if (parent_folder_id === null) return rows[0]?.owner_id;
 
         // if not root folder, call method again
         return await this.getRootFolderOwnerIdByFolderId(parent_folder_id);
@@ -135,7 +135,7 @@ class RedFS {
         const sql = `SELECT folder_id FROM files WHERE file_id = ?`;
 
         const [rows] = await db.query(sql, [file_id]);
-        const folder_id = rows[0].folder_id;
+        const folder_id = rows[0]?.folder_id;
 
         const root_folder_owner = await this.getRootFolderOwnerIdByFolderId(folder_id);
 
@@ -145,7 +145,7 @@ class RedFS {
     static async getFolderPermissionLevelByAccountId(account_id, folder_id) {
         const sql = `SELECT permission_level FROM folder_permissions WHERE account_id = ? AND folder_id = ?`;
         const [rows] = await db.query(sql, [account_id, folder_id]);
-        const permission_level = rows[0].permission_level;
+        const permission_level = rows[0]?.permission_level;
 
         return permission_level;
     }
