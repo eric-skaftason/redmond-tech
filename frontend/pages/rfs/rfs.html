@@ -11,7 +11,7 @@
     <script src="/components/nav_bar/nav_bar.js"></script>
 </head>
 <body>
-    <page-nav>
+    <page-nav class="main-nav">
         <dropdown-menu desc="Upload" openFrom="bottom" class="dropdown">
             <dropdown-element link="" id="upload_file">
                 <p>File</p>
@@ -24,6 +24,10 @@
         <a class="quick_link" href="" id="rename">Rename</a>
         <a class="quick_link" href="" id="move">Move</a>
         <a class="quick_link" href="" id="delete">Delete</a>
+    </page-nav>
+    <page-nav class="move-nav" style="display: none;">
+        <a class="quick_link" href="" id="cancel_move">Cancel move</a>
+        <a class="quick_link" href="" id="move_here">Move here</a>
     </page-nav>
 
     <main>

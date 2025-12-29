@@ -3,6 +3,8 @@ let folder_path = [{folder_id: '', folder_name: ''}]; // for root dir
 // let selected_resources = [{type: '', id: ''}];
 let selected_resources = []; // an array in case multi-select is necessary later on
 
+let moving = false;
+
 // Load resources
 async function loadResources() {
     const folder_path_tail = folder_path[folder_path.length - 1];
@@ -355,8 +357,43 @@ document.querySelector('#rename').addEventListener('click', async (event) => {
 });
 
 // Move
-document.querySelector('#move').addEventListener('click', async (event) => {
+const move = document.querySelector('#move');
+move.addEventListener('click', async (event) => {
     event.preventDefault(); // prevent page reload
+    moving = true;
+    move.innerText = 'Move here';
+
+    const mainNav = document.querySelector('.main-nav');
+    mainNav.style.display = 'none';
+    const moveNav = document.querySelector('.move-nav');
+    moveNav.style.display = 'block';
+
+});
+
+const cancel_move = document.querySelector('#cancel_move');
+cancel_move.addEventListener('click', async (event) => {
+    event.preventDefault(); // prevent page reload
+
+    moving = false;
+    move.innerText = 'Move';
+
+    const mainNav = document.querySelector('.main-nav');
+    mainNav.style.display = 'block';
+    const moveNav = document.querySelector('.move-nav');
+    moveNav.style.display = 'none';
+});
+
+const move_here = document.querySelector('#move_here');
+move_here.addEventListener('click', async (event) => {
+    event.preventDefault(); // prevent page reload
+
+    moving = false;
+    move.innerText = 'Move';
+
+    const mainNav = document.querySelector('.main-nav');
+    mainNav.style.display = 'block';
+    const moveNav = document.querySelector('.move-nav');
+    moveNav.style.display = 'none';
 
 });
 
