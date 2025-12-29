@@ -1,5 +1,4 @@
 const fs = require('fs').promises;
-const path = require('path');
 
 const RedFSModel = require('../../models/red_fs.js');
 

@@ -338,7 +338,7 @@ function getResourceData(rowElement) {
 
     return {
         type: type,
-        id: resource_id
+        id: Number(resource_id)
     };
 }
 
