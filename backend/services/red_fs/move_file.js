@@ -1,7 +1,7 @@
 const RedFSModel = require('../../models/red_fs.js');
 
 module.exports = async (account_id, file_id, new_parent_folder) => {
-    if (!file_id || !new_parent_folder) {
+    if (file_id == null || new_parent_folder == null) {
         const err = new Error("Bad request.");
         err.status = 400;
         throw err;

@@ -119,6 +119,10 @@ class RedFS {
     }
 
     static async getFilesByFolderIdRecursive(folder_id) {
+        if (!Number.isInteger(folder_id) || folder_id <= 0) {
+            throw new Error('Invalid folder_id');
+        }
+
         let files = [];
         const folder_contents = await this.getFolderContents(folder_id);
 
@@ -161,6 +165,10 @@ class RedFS {
     }
 
     static async getFilePathsByFolderIdRecursive(folder_id) {
+        if (!Number.isInteger(folder_id) || folder_id <= 0) {
+            throw new Error('Invalid folder_id');
+        }
+
         let file_paths = [];
         const folder_contents = await this.getFilePathsByFolderId(folder_id);
 
@@ -207,10 +215,15 @@ class RedFS {
     }
 
     static async getRootFolderIdByFolderId(folder_id) {
+        if (!Number.isInteger(folder_id) || folder_id <= 0) {
+            throw new Error('Invalid folder_id');
+        }
+
         const sql = `SELECT parent_folder_id, owner_id FROM folders WHERE folder_id = ?`;
         const [rows] = await db.query(sql, [folder_id]);
         const parent_folder_id = rows[0]?.parent_folder_id;
 
+        if (parent_folder_id === undefined) throw new Error('Folder does not exist');
         if (parent_folder_id === null) return folder_id;
 
         // if not root folder, call method again
@@ -238,6 +251,10 @@ class RedFS {
     }
 
     static async getRootFolderOwnerIdByFolderId(folder_id) {
+        if (!Number.isInteger(folder_id) || folder_id <= 0) {
+            throw new Error('Invalid folder_id');
+        }
+        
         const sql = `SELECT parent_folder_id, owner_id FROM folders WHERE folder_id = ?`;
         const [rows] = await db.query(sql, [folder_id]);
         const parent_folder_id = rows[0]?.parent_folder_id;
@@ -277,6 +294,13 @@ class RedFS {
     }
 
     static async isDescendant(candidate_folder_id, ancestor_folder_id) {
+        if (
+            (!Number.isInteger(candidate_folder_id) || candidate_folder_id <= 0) ||
+            (!Number.isInteger(ancestor_folder_id) || ancestor_folder_id <= 0)
+        ) {
+            throw new Error('Invalid candidate_folder_id and/or ancestor_folder_id');
+        }
+
         const candidate = await this.getFolderData(candidate_folder_id);
         const candidate_parent_id = candidate.parent_folder_id;
 
