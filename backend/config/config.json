@@ -26,12 +26,12 @@
     
     "file_sharing": {
         "global": {
-            "max_storage_bytes": 1073741824
+            "max_storage_bytes": 17179869184
         },
         "per_account": {
-            "max_storage_bytes": 104857600 ,
-            "max_upload_bytes": 10485760 ,
-            "max_resources": 10485760 ,
+            "max_storage_bytes": 1073741824,
+            "max_upload_bytes": 536870912,
+            "max_resources": 1024 ,
             "max_uploads_per_request": 4
         }
     }
