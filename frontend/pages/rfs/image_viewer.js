@@ -122,7 +122,7 @@ class ImageViewer {
 
     nextFile() {
         const rows = document.querySelectorAll('tbody tr');
-        let currentIndex = 0;
+        let currentIndex = -1;
 
         for (let i = 0; i < rows.length; i++) {
             const [type, id] = rows[i].id.split('-');
@@ -132,18 +132,16 @@ class ImageViewer {
             }
         }
 
-        if (currentIndex >= 0 && currentIndex < rows.length - 1) {
-            let nextIndex = currentIndex + 1;
-            while (nextIndex < rows.length) {
-                const [type, id] = rows[nextIndex].id.split('-');
-                if (type === 'file') {
-                    const fileName = rows[nextIndex].querySelector('.resource_name').textContent;
-                    const mimeType = this.getMimeTypeFromRow(rows[nextIndex]);
-                    this.open(id, fileName, mimeType);
-                    break;
-                }
-                nextIndex++;
+        let nextIndex = currentIndex + 1;
+        while (nextIndex < rows.length) {
+            const [type, id] = rows[nextIndex].id.split('-');
+            if (type === 'file') {
+                const fileName = rows[nextIndex].querySelector('.resource_name').textContent;
+                const mimeType = this.getMimeTypeFromRow(rows[nextIndex]);
+                this.open(id, fileName, mimeType);
+                break;
             }
+            nextIndex++;
         }
     }
 
