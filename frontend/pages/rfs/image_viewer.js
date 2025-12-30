@@ -67,7 +67,7 @@ class ImageViewer {
     }
 
     open(fileId, fileName, mimeType) {
-        this.currentFileId = fileId;
+        this.currentFileId = String(fileId);
         this.currentFileName = fileName;
         this.currentMimeType = mimeType;
         this.isVisible = true;
@@ -159,8 +159,7 @@ class ImageViewer {
             }
         }
 
-console.log(currentIndex);
-
+        
         let nextIndex = currentIndex + 1;
         while (nextIndex < rows.length) {
             const [type, id] = rows[nextIndex].id.split('-');
@@ -170,6 +169,7 @@ console.log(currentIndex);
                 this.open(id, fileName, mimeType);
                 break;
             }
+            
             nextIndex++;
         }
     }
