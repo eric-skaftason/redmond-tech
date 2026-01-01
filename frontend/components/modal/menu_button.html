@@ -13,15 +13,13 @@
         transition: background-color 0.2s ease, transform 0.1s ease;
     }
 
-    :host:hover {
+    :host(:hover) {
         background-color: #1a1a1a;
     }
 
-    :host:active {
+    :host(:active) {
         transform: scale(0.98);
     }
 </style>
 
-<!-- <div class="menu_button"> -->
-    <slot></slot>
-<!-- </div> -->
+<slot></slot>
