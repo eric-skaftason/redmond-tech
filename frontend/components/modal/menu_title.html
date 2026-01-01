@@ -1,0 +1,23 @@
+<style>
+    .menu_title {
+        /* Fill the entire space of the menu-title html element (the element's size is defined in menu_header.html as ::slotted(menu-title){...}) */
+        width: 100%;
+        height: 70px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+
+        border-bottom: #dfdfdf 1px dashed;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: #ffffff;
+        font-size: 26px;
+        font-weight: bold;
+    }
+</style>
+
+<div class="menu_title">
+    <slot></slot>
+</div>

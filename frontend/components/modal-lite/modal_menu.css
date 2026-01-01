@@ -1,0 +1,122 @@
+.modal * {
+    box-sizing: border-box;
+}
+
+.modal {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .menu_container {
+    position: relative; /* makes children with absolute position be relative to this element */
+    min-width: 250px;
+    min-height: 250px;
+    width: 80%;
+    height: 80%;
+
+    padding-bottom: 10px;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: #303030;
+}
+
+.modal .menu_container * {
+    width: 100%;
+
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-color: #dfdfdf;
+
+    user-select: none;
+}
+
+.modal .menu_controls {
+    /* position: absolute; */
+    /* top: 0; */
+    /* right: 0; */
+
+    padding: 0;
+    height: 40px;
+    background-color: #464646;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+}
+
+.modal .menu_controls .menu_control {
+    width: 40px;
+    height: 100%;
+
+    color: #ffffff;
+    background-color: #292929;
+    cursor: pointer;
+}
+
+.modal .menu_controls .menu_control:hover {
+    background-color: #1a1a1a;
+}
+
+.modal .menu_header {
+    
+}
+
+.modal .menu_body {
+    overflow-y: auto;
+}
+
+.modal .menu_title {
+    height: 70px;
+    margin-bottom: 10px;
+
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: bold;
+
+    border-bottom: 1px solid;
+    /* text-decoration: underline; */
+}
+
+.modal .menu_text {
+    color: #f5f5f5;
+}
+
+
+.modal .menu_button {
+    height: 50px;
+    color: #f5f5f5;
+
+    background-color: #292929;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.modal .menu_button:hover {
+    background-color: #1a1a1a;
+}
+
+.modal .menu_button:active {
+    transform: scale(0.98);
+}

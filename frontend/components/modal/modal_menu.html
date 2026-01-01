@@ -1,0 +1,39 @@
+<style>
+    :host {
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 10000;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menu_container {
+        position: relative; /* makes children with absolute position be relative to this element */
+        min-width: 250px;
+        min-height: 250px;
+        width: 80%;
+        height: 80%;
+
+        padding-bottom: 10px;
+        overflow: hidden;
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: column;
+
+        background-color: #303030;
+    }
+
+</style>
+
+<div class="menu_container">
+    <slot></slot>
+</div>
