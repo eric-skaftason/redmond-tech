@@ -9,7 +9,7 @@
     <script src="/components/nav_bar/nav_bar.js"></script>
     <link rel="stylesheet" href="/components/modal-lite/modal_menu.css">
 
-    <script src="/components/modal/modal_menu.js"></script>
+    <script type="module" src="/components/modal/modal_menu.js"></script>
     
 </head>
 <body>
@@ -122,12 +122,38 @@
         
         <menu-body>
             <menu-text>Some modal menu text</menu-text>
-            <menu-button>Modal Menu</menu-button>
-            <menu-button>Modal Menu</menu-button>
+            <menu-button id="btn1">Modal Menu</menu-button>
+            <menu-button id="btn1">Modal Menu</menu-button>
+            <menu-text>List</menu-text>
+            <list-input>
+                <list-element>Element 1</list-element>
+                <list-element>Element 2</list-element>
+                <list-element>Element 3</list-element>
+                <list-element>Element 4</list-element>
+                <list-element>Element 5</list-element>
+                <list-element>Element 6</list-element>
+                <list-element>Element 7</list-element>
+                <list-element>Element 8</list-element>
+                <list-element>Element 9</list-element>
+                <list-add-element>Add element</list-add-element>
+            </list-input>
+        </menu-body>
+    </modal-menu>
+
+    <modal-menu width="200px" height="200px" opacity="0">
+        <menu-controls>
+            <close-menu></close-menu>
+        </menu-controls>
+        <menu-body>
+            <menu-text>Mini modal</menu-text>
         </menu-body>
     </modal-menu>
 
 
+    <script>
+
+        
+    </script>
     
 </body>
 </html>

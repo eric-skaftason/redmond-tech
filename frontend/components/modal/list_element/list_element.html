@@ -1,0 +1,42 @@
+<script src="/components/modal/menu_button/menu_button.js"></script>
+
+<style>
+    :host {
+        box-sizing: border-box;
+        width: 100%;
+        color: #f5f5f5;
+
+        padding-left: 10px;
+        margin-bottom: 10px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: #3a3a3a;
+
+        cursor: text;
+        transition: background-color 0.2s ease;
+    }
+
+    :host(:hover) {
+        background-color: #292929;
+    }
+
+    .text_input {
+        all: unset;
+
+        width: 100%;
+        height: 100%;
+
+    }
+
+</style>
+
+<slot hidden></slot>
+<input type="text" class="text_input">
+
+</input>
+<div class="element_functions">
+    <menu-button id="del">🗑</menu-button>
+</div>
