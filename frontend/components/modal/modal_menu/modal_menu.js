@@ -24,6 +24,16 @@ export class ModalMenu extends HTMLElement {
             this.shadowRoot.host.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
         }
 
+        // Vertical centring (center for consistency)
+        const center = this.shadowRoot.host.getAttribute('center');
+
+        const menu_body = this.shadowRoot.host.querySelector('menu-body');
+        if (menu_body && (center === '' || center)) {
+            menu_body.style.display = 'flex';
+            menu_body.style.justifyContent = 'center';
+            menu_body.style.height = '100%';
+        }
+
         this.addEventListener('close-menu', (event) => {
             this.remove();
         });

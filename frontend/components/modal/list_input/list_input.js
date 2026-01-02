@@ -16,6 +16,23 @@ export class ListInput extends HTMLElement {
         this.attachShadow({ mode: 'open' });
     }
 
+    modalMessage(message) {
+        const modal_menu = this.shadowRoot.host.closest('modal-menu');
+        modal_menu.insertAdjacentHTML('afterend', 
+            `
+                <modal-menu width="200px" height="200px" opacity="0" center>
+                    <menu-controls>
+                        <close-menu></close-menu>
+                    </menu-controls>
+                    <menu-body>
+                        <menu-text>${message}</menu-text>
+                        <close-menu>OK</close-menu>
+                    </menu-body>
+                </modal-menu>
+            `
+        );
+    }
+
     async connectedCallback() {
         const res = await fetch('/components/modal/list_input/list_input.html');
         const html = await res.text();
@@ -68,7 +85,21 @@ export class ListInput extends HTMLElement {
 
         if (string.length > this.#maxStringLen) return false;
 
-        if (!this.#isValidStringExternal(string) || !await this.#isValidStringExternalAsync(string)) return false;
+        const validSync = this.#isValidStringExternal(string);
+        const validAsync = await this.#isValidStringExternalAsync(string);
+        if (validSync !== true || validAsync !== true) {
+
+            const errorMsg = (() => {
+                if (typeof validSync === 'string') return validSync;
+                if (typeof validAsync === 'string') return validAsync;
+                return null
+            })();
+            if (errorMsg) {
+                this.modalMessage(errorMsg);
+            }
+            
+            return false;
+        }
 
         return true;
     }
