@@ -78,6 +78,15 @@ class AccountsModel {
         // rows[0] contains id property only
         return rows.length > 0 ? rows[0].id : null;
     }
+
+    static async accountExists(account_id) {
+        const sql = `SELECT * FROM accounts WHERE id = ?`;
+
+        const [rows] = await db.query(sql, [account_id]);
+
+        if (rows.length > 0) return true;
+        return false;
+    }
 }
 
 module.exports = AccountsModel;
