@@ -1,3 +1,4 @@
+const AccountsModel = require('../../models/accounts.js');
 const RedFSModel = require('../../models/red_fs.js');
 
 module.exports = async (account_id, folder_id) => {
@@ -22,7 +23,33 @@ module.exports = async (account_id, folder_id) => {
         throw err;
     }
 
-    const permission_data = await RedFSModel.getAllAccountsByFolderPermissionLevel(folder_id, 1);
+    const admin_ids = await RedFSModel.getAllAccountIdsByFolderPermissionLevel(folder_id, 3);
+    const editor_ids = await RedFSModel.getAllAccountIdsByFolderPermissionLevel(folder_id, 2);
+    const viewer_ids = await RedFSModel.getAllAccountIdsByFolderPermissionLevel(folder_id, 1);
+
+    const idsToUsernames = async (ids) => {
+        let usernames = [];
+        for (const id of ids) {
+            const username = await AccountsModel.getUsernameByAccountId(id);
+            if (username !== null) usernames.push(username);
+        }
+        return usernames;
+    }
+
+    const permission_data = {
+        admins: {
+            usernames: await idsToUsernames(admin_ids),
+            account_ids: admin_ids
+        },
+        editors: {
+            usernames: await idsToUsernames(editor_ids),
+            account_ids: editor_ids
+        },
+        viewers: {
+            usernames: await idsToUsernames(viewer_ids),
+            account_ids: viewer_ids
+        }
+    }
 
     return permission_data;
 }

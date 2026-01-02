@@ -1,6 +1,5 @@
 // Get root folders accessible by a given account
 
-const { permission } = require('node:process');
 const getPermissions = require('../../services/red_fs/get_permissions.js');
 module.exports = async (req, res) => {
     try {

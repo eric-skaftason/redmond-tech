@@ -63,6 +63,14 @@ class AccountsModel {
         return !!session;
     }
 
+    static async getUsernameByAccountId(id) {
+        const sql = `SELECT username FROM accounts WHERE (id) = (?)`;
+       
+        const [rows] = await db.query(sql, [id]);
+        
+        return rows.length > 0 ? rows[0].username : null;
+    }
+
     static async getAccountIdByUsername(username) {
         const sql = `SELECT id FROM accounts WHERE (username) = (?)`;
 

@@ -382,10 +382,26 @@ class RedFS {
 
     }
 
-    static async getAllAccountsByFolderPermissionLevel(folder_id, min_permission_level) {
+    static async getAllAccountIdsByFolderPermissionLevel(folder_id, permission_level) {
+        const sql = `SELECT account_id FROM folder_permissions WHERE folder_id = ? AND permission_level = ?`;
+
+        const [rows] = await db.query(sql, [folder_id, permission_level]);
+
+        const account_ids = (() => {
+            let account_ids = [];
+            rows.forEach(row => {
+                account_ids.push(row.account_id);
+            });
+            return account_ids;
+        })();
+
+        return account_ids;
+    }
+
+    static async getAllAccountIdsByMinFolderPermissionLevel(folder_id, min_permission_level) {
         const sql = `SELECT account_id FROM folder_permissions WHERE folder_id = ? AND permission_level >= ?`;
 
-        const [rows] = db.query(sql, [folder_id, min_permission_level]);
+        const [rows] = await db.query(sql, [folder_id, min_permission_level]);
 
         const account_ids = (() => {
             let account_ids = [];

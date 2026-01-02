@@ -48,6 +48,10 @@ const delete_resource = require('../../controllers/red_fs/delete.js');
 router.delete('/delete', auth(1), delete_resource);
 
 // Add account permissions
+const get_permissions = require('../../controllers/red_fs/get_permissions.js');
+router.get('/get_permissions/:folder_id', auth(1), get_permissions);
+
+// Add account permissions
 const add_permission = require('../../controllers/red_fs/add_permission.js');
 router.post('/add_permission', auth(1), add_permission);
 

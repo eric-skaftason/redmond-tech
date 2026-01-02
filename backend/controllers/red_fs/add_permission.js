@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     try {
         
         const account_id = req.account_id;
-        const {account_id: target_account_id, permission_level} = req.body;
+        const {target_account_id, permission_level} = req.body;
 
         await add_permission(account_id, target_account_id, permission_level);
 

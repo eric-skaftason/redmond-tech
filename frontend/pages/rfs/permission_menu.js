@@ -1,5 +1,17 @@
 export default class PermissionMenu {
-    open(folder_name, folder_id) {
+
+    async getPermissions(folder_id) {
+        const res = await fetch(`/api/rfs/get_permissions/${folder_id}`);
+        const res_data = await res.json();
+
+        return res_data.data.permission_data;
+    }
+
+    async open(folder_name, folder_id) {
+
+        const permissions = await this.getPermissions(folder_id);
+        const { admins, editors, viewers } = permissions;
+
         const permissionMenuModal = document.createElement('div');
 
         permissionMenuModal.innerHTML = `
@@ -13,35 +25,42 @@ export default class PermissionMenu {
                     <menu-text>Permission menu</menu-text>
                 </menu-header>
                 
-                <menu-body>
-                    <menu-text>Administrators</menu-text>
-                    <list-input verify-str-src="" id="admins">
-                        <list-element>Element 1</list-element>
-                        <list-element>Element 2</list-element>
-                        <list-add-element>Add element</list-add-element>
-                    </list-input>
-                    <menu-text>Editors</menu-text>
-                    <list-input verify-str-src="" id="editors">
-                        <list-element>Element 1</list-element>
-                        <list-element>Element 2</list-element>
-                        <list-add-element>Add element</list-add-element>
-                    </list-input>
-                    <menu-text>Viewers</menu-text>
-                    <list-input verify-str-src="" id="viewers">
-                        <list-element>Element 1</list-element>
-                        <list-element>Element 2</list-element>
-                        <list-add-element>Add element</list-add-element>
-                    </list-input>
-                </menu-body>
+                <menu-body id="menu-body"></menu-body>
             </modal-menu>
         `;
 
+        const menuBody = permissionMenuModal.querySelector('#menu-body');
+
+        const createList = (label, id, usernames = []) => {
+
+            const labelElement = document.createElement('menu-text');
+            labelElement.innerText = label;
+
+            const list = document.createElement('list-input');
+            list.setAttribute('verify-str-src', '');
+            list.id = id;
+
+            usernames.forEach(username => {
+                const item = document.createElement('list-element');
+                item.innerText = username;
+                list.appendChild(item);
+            });
+
+            const addElement = document.createElement('list-add-element');
+            addElement.innerText = 'Add element';
+            list.appendChild(addElement);
+
+            menuBody.append(labelElement, list);
+        };
+
+        createList('Administrators', 'admins', admins.usernames);
+        createList('Editors', 'editors', editors.usernames);
+        createList('Viewers', 'viewers', viewers.usernames);
 
         document.body.append(permissionMenuModal);
-
     }
 
     close() {
-
+        // cleanup logic later
     }
 }

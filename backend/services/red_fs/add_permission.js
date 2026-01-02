@@ -44,6 +44,6 @@ module.exports = async (account_id, folder_id, target_account_id, permission_lev
         throw err;
     }
 
-    RedFSModel.addPermission(folder_id, target_account_id, permission_level);
+    await RedFSModel.addPermission(folder_id, target_account_id, permission_level);
 
 }
