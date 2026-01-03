@@ -6,9 +6,9 @@ module.exports = async (req, res) => {
     try {
         
         const account_id = req.account_id;
-        const {target_account_id, permission_level} = req.body;
+        const {target_username, permission_level, folder_id} = req.body;
 
-        await add_permission(account_id, target_account_id, permission_level);
+        await add_permission(account_id, folder_id, target_username, permission_level);
 
         res.status(201).json({ message: `Permission granted to new account.` });
     } catch (error) {

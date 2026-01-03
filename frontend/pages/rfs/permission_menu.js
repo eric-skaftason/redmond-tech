@@ -31,13 +31,14 @@ export default class PermissionMenu {
 
         const menuBody = permissionMenuModal.querySelector('#menu-body');
 
-        const createList = (label, id, usernames = []) => {
+        const createList = (label, id, args, usernames = []) => {
 
             const labelElement = document.createElement('menu-text');
             labelElement.innerText = label;
 
             const list = document.createElement('list-input');
-            list.setAttribute('verify-str-src', '');
+            list.setAttribute('verify-str-src', '/rfs/add_account.js');
+            list.setAttribute('verify-str-args', JSON.stringify(args));
             list.id = id;
 
             usernames.forEach(username => {
@@ -53,14 +54,12 @@ export default class PermissionMenu {
             menuBody.append(labelElement, list);
         };
 
-        createList('Administrators', 'admins', admins.usernames);
-        createList('Editors', 'editors', editors.usernames);
-        createList('Viewers', 'viewers', viewers.usernames);
+        createList('Administrators', 'admins', [3, folder_id], admins.usernames);
+        createList('Editors', 'editors', [2, folder_id], editors.usernames);
+        createList('Viewers', 'viewers', [1, folder_id], viewers.usernames);
 
         document.body.append(permissionMenuModal);
     }
 
-    close() {
-        // cleanup logic later
-    }
+    
 }

@@ -1,13 +1,14 @@
 const AccountsModel = require('../../models/accounts.js');
 const RedFSModel = require('../../models/red_fs.js');
 
-module.exports = async (account_id, folder_id, target_account_id, permission_level) => {
+module.exports = async (account_id, folder_id, target_username, permission_level) => {
     // account_id - the account performing the operation
     // target_account_id - the account having the permissions applied to
 
+    const target_account_id = await AccountsModel.getAccountIdByUsername(target_username);
 
     // Ensure target account exists
-    if (!await AccountsModel.accountExists(target_account_id)) {
+    if (target_account_id === null) {
         const err = new Error("Invalid target account id");
         err.status = 400;
         throw err;
@@ -27,6 +28,13 @@ module.exports = async (account_id, folder_id, target_account_id, permission_lev
         throw err;
     }
 
+    // If folder permission level for target account is not null or undefined, then permissions are already defined
+    if (await RedFSModel.getFolderPermissionLevelByAccountId(target_account_id, folder_id) != null) {
+        const err = new Error("Permissions are already defined");
+        err.status = 400;
+        throw err;
+    }
+
     if (!Number.isInteger(permission_level) || permission_level < 1 || permission_level > 3) {
         const err = new Error("Invalid permission level");
         err.status = 400;
@@ -38,7 +46,7 @@ module.exports = async (account_id, folder_id, target_account_id, permission_lev
     // P2 (editor) can be set by P3 (admin)
     // P2 and lower cannot set permissions
     const operator_permission = await RedFSModel.getFolderPermissionLevelByAccountId(account_id, folder_id);
-    if (operator_permission < 3 || operator_permission >= permission_level) {
+    if (operator_permission < 3 || operator_permission <= permission_level) {
         const err = new Error("Insufficient permission level to perform operation");
         err.status = 403;
         throw err;

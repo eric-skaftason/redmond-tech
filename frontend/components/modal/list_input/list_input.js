@@ -85,14 +85,17 @@ export class ListInput extends HTMLElement {
 
         if (string.length > this.#maxStringLen) return false;
 
-        const validSync = this.#isValidStringExternal(string);
-        const validAsync = await this.#isValidStringExternalAsync(string);
+        const additional_args = this.shadowRoot.host.getAttribute('verify-str-args');
+        const additional_args_parsed = additional_args !== null ? JSON.parse(additional_args): [];
+
+        const validSync = this.#isValidStringExternal(string, ...additional_args_parsed);
+        const validAsync = await this.#isValidStringExternalAsync(string, ...additional_args_parsed);
         if (validSync !== true || validAsync !== true) {
 
             const errorMsg = (() => {
                 if (typeof validSync === 'string') return validSync;
                 if (typeof validAsync === 'string') return validAsync;
-                return null
+                return null;
             })();
             if (errorMsg) {
                 this.modalMessage(errorMsg);
