@@ -57,7 +57,7 @@ router.post('/add_permission', auth(1), add_permission);
 
 // Remove account permissions
 const remove_permission = require('../../controllers/red_fs/remove_permission.js');
-router.post('/remove_permission', auth(1), remove_permission);
+router.delete('/remove_permission', auth(1), remove_permission);
 
 // Edit account permissions
 const edit_permission = require('../../controllers/red_fs/edit_permission.js');

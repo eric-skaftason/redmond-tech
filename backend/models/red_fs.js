@@ -374,8 +374,9 @@ class RedFS {
         await db.query(sql, [folder_id, account_id, permission_level]);
     }
 
-    static async removePermission() {
-
+    static async removePermission(folder_id, account_id) {
+        const sql = `DELETE FROM folder_permissions WHERE folder_id = ? AND account_id = ?`;
+        await db.query(sql, [folder_id, account_id]);
     }
 
     static async editPermission() {

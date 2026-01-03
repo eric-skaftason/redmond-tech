@@ -43,6 +43,29 @@ export default class PermissionMenu {
 
             usernames.forEach(username => {
                 const item = document.createElement('list-element');
+                item.addEventListener('click', async () => {
+                    const res = await fetch(`/api/rfs/remove_permission`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            target_username: username,
+                            folder_id: folder_id
+                        })
+                    });
+
+                    const res_data = await res.json();
+
+                    if (!res.ok) {
+                        console.error(res_data.message);
+                        return false;
+                    } else {
+                        console.log(res_data.message);
+                        return true;
+                    }
+                });
+
                 item.innerText = username;
                 list.appendChild(item);
             });
