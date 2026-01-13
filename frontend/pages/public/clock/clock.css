@@ -1,0 +1,18 @@
+
+
+body{
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #242424;
+    font-family: 'Courier New', monospace;
+}
+
+.clock {
+    color: #008cff;
+    font-size: 80px;
+    letter-spacing: 4px;
+    
+}
