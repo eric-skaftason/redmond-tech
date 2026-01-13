@@ -43,7 +43,9 @@ export default class PermissionMenu {
 
             usernames.forEach(username => {
                 const item = document.createElement('list-element');
-                item.addEventListener('click', async () => {
+                item.addEventListener('click', async (event) => {
+                    if (!event.target.shadowRoot.querySelector('#del')) return;
+
                     const res = await fetch(`/api/rfs/remove_permission`, {
                         method: 'DELETE',
                         headers: {
