@@ -1,4 +1,9 @@
-
+html {
+    overflow: hidden; /* Hide scrollbars and disable scrolling */
+    height: 100%;     /* Ensure the body takes the full height of the viewport */
+    margin: 0;        /* Remove default browser margins */
+    padding: 0;
+  }
 
 body{
     margin: 0;
@@ -16,3 +21,20 @@ body{
     letter-spacing: 4px;
     
 }
+.fullScreenButton {
+    position: absolute;
+    top: 180px;
+    right: 20px;
+    background-color: #008cff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.fullScreenButton:hover {
+    background-color: #006eb3;
+    transform: scale(1.1);
+    transition: transform 0.1s;
+}   

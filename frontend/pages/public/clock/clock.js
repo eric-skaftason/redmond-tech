@@ -13,10 +13,23 @@ function updateClock() {
         `${hours}:${minutes}:${seconds}`;
 }
 
+
 function goFullscreen() {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
+        document.querySelector("page-nav").hidden = true;
+        document.querySelector(".fullScreenButton").hidden = true;
     }}
+
+
+document.addEventListener("fullscreenchange", () => {
+    if (!document.fullscreenElement) {
+        document.querySelector("page-nav").hidden = false;
+        document.querySelector(".fullScreenButton").hidden = false;
+    }
+});
+    
+document.getElementById("goFullscreen").addEventListener("click", goFullscreen);
     
 updateClock();
 setInterval(updateClock, 1000);
