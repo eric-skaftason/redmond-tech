@@ -15,7 +15,10 @@
     <main >
         <button id="goFullscreen" class="fullScreenButton">⛶</button>
         <div class="clock" id="clock">00:00:00</div>
-        
+        <div class="settingsContainer">
+        <input type="text" id="colorPicker" placeholder="HEX CODE" maxlength="6">
+        <button id="colorButton" onclick="applyColor()">Apply Color</button>
+        </div>
         
     </main>
     <script src="/public/clock/clock.js"></script>

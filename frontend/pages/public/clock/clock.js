@@ -13,12 +13,23 @@ function updateClock() {
         `${hours}:${minutes}:${seconds}`;
 }
 
+function applyColor() {
+    const colorInput = document.getElementById("colorPicker").value;
+    const isValidHex = /^([0-9A-Fa-f]{6})$/.test(colorInput);
+
+    if (isValidHex) {
+        document.getElementById("clock").style.color = `#${colorInput}`;
+    } else {
+        alert("Please enter a valid HEX color code.");
+    }
+}
 
 function goFullscreen() {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
         document.querySelector("page-nav").hidden = true;
         document.querySelector(".fullScreenButton").hidden = true;
+        document.querySelector(".settingsContainer").hidden = true;
     }}
 
 
@@ -26,6 +37,7 @@ document.addEventListener("fullscreenchange", () => {
     if (!document.fullscreenElement) {
         document.querySelector("page-nav").hidden = false;
         document.querySelector(".fullScreenButton").hidden = false;
+        document.querySelector(".settingsContainer").hidden = false;
     }
 });
     

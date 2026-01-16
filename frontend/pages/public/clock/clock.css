@@ -38,3 +38,21 @@ body{
     transform: scale(1.1);
     transition: transform 0.1s;
 }   
+#colorPicker {
+    text-align: center;
+    padding: 5px;
+    font-size: 16px;
+    border: 2px solid #008cff;
+    border-radius: 5px;
+    outline: none;
+}
+#colorButton {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #008cff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
