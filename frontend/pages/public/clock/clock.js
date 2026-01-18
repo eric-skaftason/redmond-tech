@@ -27,6 +27,7 @@ function applyColor() {
 function goFullscreen() {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
+        document.querySelector(".clock").style.fontSize = "12vw";
         document.querySelector("page-nav").hidden = true;
         document.querySelector(".fullScreenButton").hidden = true;
         document.querySelector(".settingsContainer").hidden = true;
@@ -35,6 +36,7 @@ function goFullscreen() {
 
 document.addEventListener("fullscreenchange", () => {
     if (!document.fullscreenElement) {
+        document.querySelector(".clock").style.fontSize = "80px";
         document.querySelector("page-nav").hidden = false;
         document.querySelector(".fullScreenButton").hidden = false;
         document.querySelector(".settingsContainer").hidden = false;
