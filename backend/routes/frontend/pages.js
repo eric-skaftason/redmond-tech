@@ -26,6 +26,10 @@ router.get('/info', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../../../frontend/pages/public/info/info.html'));
 });
 
+//Clock
+router.get('/clock', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../../../frontend/pages/public/clock/clock.html'));
+});
 
 // HOME PAGE
 router.get('/', (req, res) => {

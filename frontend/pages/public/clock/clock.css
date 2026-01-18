@@ -1,0 +1,58 @@
+html {
+    overflow: hidden; /* Hide scrollbars and disable scrolling */
+    height: 100%;     /* Ensure the body takes the full height of the viewport */
+    margin: 0;        /* Remove default browser margins */
+    padding: 0;
+  }
+
+body{
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #242424;
+    font-family: 'Courier New', monospace;
+}
+
+.clock {
+    color: #008cff;
+    font-size: 80px;
+    letter-spacing: 4px;
+    
+}
+.fullScreenButton {
+    position: absolute;
+    top: 180px;
+    right: 20px;
+    background-color: #008cff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.fullScreenButton:hover {
+    background-color: #006eb3;
+    transform: scale(1.1);
+    transition: transform 0.1s;
+}   
+#colorPicker {
+    text-align: center;
+    padding: 5px;
+    font-size: 16px;
+    border: 2px solid #008cff;
+    border-radius: 5px;
+    outline: none;
+}
+#colorButton {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #008cff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
