@@ -9,6 +9,17 @@ let paddleWidth = 10;
 let paddleHeight = 50;
 let paddleVolocityY =0;
 
+//ball
+let ballHeight = 10;
+let ballWidth = 10;
+let ball = {
+    x: canvasWidth/2 - ballWidth/2,
+    y: canvasHeight/2 - ballHeight/2,
+    width: ballWidth,
+    height: ballHeight,
+    volocityX : 1,
+    volocityY : 2,
+};
 //player 
 let player1 = {
     x:10,
@@ -82,6 +93,16 @@ function update(){
         player2.y = newPlayer2Y;
     }
     context.fillRect(player2.x, player2.y, player2.width, player2.height);
+    //ball
+    context.fillStyle = "#FFFFFF";
+    ball.x += ball.volocityX;
+    ball.y += ball.volocityY;
+    context.fillRect(ball.x, ball.y, ball.width, ball.height);
+        if(ball.y <=0 || ball.y + ball.height >= canvasHeight){
+            ball.volocityY *= -1;}
+        if (colisionDetection(ball, player1) || colisionDetection(ball, player2)){
+            ball.volocityX *= -1;}
+
 }
 
 function updateVelocities(e){
@@ -102,4 +123,11 @@ function updateVelocities(e){
     else if (heldKeys.ArrowDown){
         player2.volocityY = 3;
     }
+}
+
+function colisionDetection(a, b){
+    return (a.x < b.x + b.width &&
+            a.x + a.width > b.x &&
+            a.y < b.y + b.height &&
+            a.y + a.height > b.y);
 }
