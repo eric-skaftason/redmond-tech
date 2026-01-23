@@ -20,6 +20,7 @@ let ball = {
     volocityX : 1,
     volocityY : 2,
 };
+
 //player 
 let player1 = {
     x:10,
@@ -35,8 +36,12 @@ let player2 = {
     height : paddleHeight,
     volocityY : paddleVolocityY,
 }
-//key handling
 
+//player points
+let player1Points = 0;
+let player2Points = 0;
+
+//key handling
 let heldKeys = {
     w: false,
     s: false,
