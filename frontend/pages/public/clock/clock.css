@@ -1,11 +1,11 @@
 html {
     overflow: hidden; /* Hide scrollbars and disable scrolling */
-    height: 100%;     /* Ensure the body takes the full height of the viewport */
-    margin: 0;        /* Remove default browser margins */
+    height: 100%; /* Ensure the body takes the full height of the viewport */
+    margin: 0; /* Remove default browser margins */
     padding: 0;
-  }
+}
 
-body{
+/* body{
     margin: 0;
     height: 100vh;
     display: flex;
@@ -13,7 +13,7 @@ body{
     align-items: center;
     background-color: #242424;
     font-family: 'Courier New', monospace;
-}
+} */
 
 .clock {
     color: #008cff;
@@ -37,7 +37,7 @@ body{
     background-color: #006eb3;
     transform: scale(1.1);
     transition: transform 0.1s;
-}   
+}
 #colorPicker {
     text-align: center;
     padding: 5px;
