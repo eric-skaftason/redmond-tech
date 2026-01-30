@@ -25,6 +25,9 @@ router.get('/sign_up', (req, res) => {
 router.get('/info', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../../../frontend/pages/public/info/info.html'));
 });
+router.get('/contrib', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../../../frontend/pages/public/contrib/contributions.html'));
+});
 
 //Clock
 router.get('/clock', (req, res) => {

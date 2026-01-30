@@ -1,0 +1,7 @@
+.card {
+    background: #1a1a1aff;
+}
+
+.card:hover {
+    background: rgb(2, 2, 2);
+}
