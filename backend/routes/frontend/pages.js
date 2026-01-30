@@ -8,8 +8,8 @@ router.use('/public', express.static(path.join(__dirname, '../../../frontend/pag
 router.use('/templates', express.static(path.join(__dirname, '../../../frontend/templates')));
 
 // Custom routers
-const fun = require('./fun.js');
-router.use('/fun', fun);
+const games = require('./games.js');
+router.use('/games', games);
 
 const debug = require('./debug.js');
 router.use('/debug', debug);
