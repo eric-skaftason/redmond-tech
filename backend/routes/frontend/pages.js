@@ -34,6 +34,11 @@ router.get('/clock', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../../../frontend/pages/public/clock/clock.html'));
 });
 
+//Games
+router.get('/games/pong', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../../../frontend/pages/public/games/pong/pong.html'));
+});
+
 // HOME PAGE
 router.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../../../frontend/pages/public/home/index.html'));

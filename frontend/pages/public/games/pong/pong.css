@@ -1,0 +1,9 @@
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#pongCanvas{
+    border: 2px solid #969696;
+    background-color: #000000;
+}   
