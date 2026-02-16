@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/components/universal_styling.css">
+    <script src="/components/nav_bar/nav_bar.js"></script>
+
+    <script src="/components/progress_bar/progress_bar.js"></script>
+</head>
+<body>
+    <page-nav></page-nav>
+
+    <main>
+        <progress-bar
+            data-calibration='{
+                "checkpoints": [
+                    [50, 3000, "ease"],
+                    [72, 2000, "linear"],
+                    [84, 5000, "steps(5, start)"],
+                    [100, 1000, "steps(5, end)"]
+                ]
+            }'
+            width="400"
+            height="20"
+            containerColor="rgb(168, 168, 168)"
+            barColor="#1880ff"
+        >
+        </progress-bar>
+
+        <!-- 
+            25% after 3000 ms
+            72% after 2000 more ms
+            84% after 5000 more ms
+            100% after 1000 more ms
+        -->
+
+        <!--         
+            linear — constant speed
+            ease — slow start, fast middle, slow end (default)
+            ease-in — slow start
+            ease-out — slow end
+            ease-in-out — slow start and end
+            steps (start) — jump immediately
+            steps (end) — jump at the end
+            cubic-bezier(...) — custom curve
+            steps(...) — segmented / jump animation
+        -->
+
+
+        
+    </main>
+
+
+    
+</body>
+</html>
